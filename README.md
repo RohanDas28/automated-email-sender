@@ -44,36 +44,6 @@ Ensure you have the following before running the script:
    python main.py
    ```
 
-### Multilogin Integration Example
-
-```python
-import requests, json, hashlib
-
-token = requests.post(
-'https://api.multilogin.com/user/signin',
-headers={'Content-Type': 'application/json', 'Accept': 'application/json'},
-data=json.dumps({'email': 'foo.bar@multilogin.com', 'password': hashlib.md5(b'FooBar').hexdigest()})
-).json()['data']['token']
-
-requests.post(
-'https://launcher.mlx.yt:45001/api/v2/profile/quick',
-headers={'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': f'Bearer {token}'},
-data=json.dumps({
-'browser_type': 'mimic',
-'os_type': 'macos',
-'is_headless': False,
-'parameters': {
-'flags': {k: 'mask' for k in [
-'audio_masking', 'fonts_masking', 'geolocation_masking', 'geolocation_popup',
-'graphics_masking', 'graphics_noise', 'localization_masking', 'media_devices_masking',
-'navigator_masking', 'ports_masking', 'screen_masking', 'timezone_masking', 'webrtc_masking'
-]},
-'fingerprint': {}
-}
-})
-)
-```
-
 ## Industry Applications for Multilogin
 Multilogin provides competitive advantages across multiple industries:
 
